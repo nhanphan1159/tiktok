@@ -101,6 +101,11 @@
     
 }
 
+.actions {
+    display: flex;
+    align-items: center;
+}
+
 .menu-btn {
     font-size: 2rem;
     margin-left: 24px;
@@ -109,4 +114,20 @@
     cursor: pointer;
 }
 
+.action-btn {
+    color: #161823;
+    background-color: transparent;
+    font-size: 2.4rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avt {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
+    cursor: pointer;
+}
 
