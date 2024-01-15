@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleQuestion,
   faCircleXmark,
-  faCloudUpload,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
@@ -26,6 +25,8 @@ import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Menu from '~/components/Popper/Menu';
 import 'tippy.js/dist/tippy.css';
+import { InboxIcon, MessageIcon } from '~/components/icons/index.js';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -65,9 +66,6 @@ function Header() {
 
   const currentUser = true;
 
-
-
-
   useEffect(() => {
     setTimeout(() => {
       setSearchResult([]);
@@ -82,30 +80,30 @@ function Header() {
     }
   };
 
-const userMenu= [
-  {
-    icon: <FontAwesomeIcon icon={faUser} />,
-    title: 'View Profile',
-    to: './@hoa',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faCoins} />,
-    title: 'Get Coins',
-    to: './coin',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faGear} />,
-    title: 'Setting',
-    to: './setting',
-  },
-  ...MENU_ITEMS,
-  {
-    icon: <FontAwesomeIcon icon={faSignOut} />,
-    title: 'Log Out',
-    to: './logout',
-    separate : true
-  },
-]
+  const userMenu = [
+    {
+      icon: <FontAwesomeIcon icon={faUser} />,
+      title: 'View Profile',
+      to: './@hoa',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCoins} />,
+      title: 'Get Coins',
+      to: './coin',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} />,
+      title: 'Setting',
+      to: './setting',
+    },
+    ...MENU_ITEMS,
+    {
+      icon: <FontAwesomeIcon icon={faSignOut} />,
+      title: 'Log Out',
+      to: './logout',
+      separate: true,
+    },
+  ];
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -145,9 +143,14 @@ const userMenu= [
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Tippy delay={[0,200]} content="Upload videos" placement="bottom">
+              <Tippy delay={[0, 200]} content="Upload videos" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -159,17 +162,16 @@ const userMenu= [
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
-                src="https://static-images.vnncdn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-344.jpg"
+              <Image
+                src="https://static-images.vnncddsn.net/files/publish/2022/9/3/bien-vo-cuc-thai-binh-344.jpg"
                 className={cx('user-avt')}
                 alt="loging"
+                // fallback="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/336166849_1347076489194332_6065977855998949488_n.jpg?stp=cp6_dst-jpg&_nc_cat=109&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeEvcUv3D1RYbn_HLBV5LtLHjdwtQ30a2XmN3C1DfRrZeTQa_80tcyUu6qrQU-Fm9W4H6EB3sgkCp9IYqzjxsB78&_nc_ohc=Z8m5tqa4CmkAX-FvAr6&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfCdjQjMTjtDJ08s1HRKNy3v-HQoJ0YaBffyrs6hSUDTCA&oe=65A6190A"
               />
             ) : (
-              <>
-                <button className={cx('menu-btn')}>
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-              </>
+              <button className={cx('menu-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
             )}
           </Menu>
         </div>
