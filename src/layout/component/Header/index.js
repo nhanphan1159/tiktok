@@ -10,17 +10,19 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
+import { Link } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
+import { InboxIcon, MessageIcon } from '~/components/icons';
 
 import styles from './Header.module.scss';
 import Button from '~/components/Button';
 import images from '~/assets/Images';
 import Menu from '~/components/Popper/Menu';
 import 'tippy.js/dist/tippy.css';
-import { InboxIcon, MessageIcon } from '~/components/icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -58,7 +60,6 @@ const MENU_ITEMS = [
 function Header() {
   const currentUser = true;
 
-
   const handleMenuChange = (MenuItem) => {
     switch (MenuItem.type) {
       case 'language':
@@ -94,10 +95,10 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <div className={cx('logo')}>
+        <Link to={config.routes.home} className={cx('logo')}>
           <img src={images.logo} alt="tiktok" />
-        </div>
-          <Search/>
+        </Link>
+        <Search />
         {/* {SEARCH} */}
         <div className={cx('actions')}>
           {currentUser ? (
