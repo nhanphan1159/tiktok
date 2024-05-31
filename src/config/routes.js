@@ -3,7 +3,9 @@ const routes = {
   following : '/following',
   profile : '//:nickname',
   upload : '/upload',
-  search : '/sehrch',
+  search : '/search',
+  live : '/live',
+
 
 };
 
